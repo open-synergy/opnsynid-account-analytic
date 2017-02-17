@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="account_analytic_mass_assign_view_form" model="ir.ui.view">
+            <field name="name">Account Analytic Mass Assign Form</field>
+            <field name="model">account.analytic_mass_assign</field>
+            <field name="arch" type="xml">
+                <form string="Change Journal Item Analytic">
+                    <group>
+                        <field name="analytic_account_id" domain="[('type', '&lt;&gt;', 'view')]"/>
+                    </group>
+                    <footer>
+                        <button string="Apply" name="button_change_analytic" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+           </field>
+        </record>
+
+        <record id="account_analytic_mass_assign_act_window" model="ir.actions.act_window">
+            <field name="name">Change Journal Item Analytic</field>
+            <field name="res_model">account.analytic_mass_assign</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="account_analytic_mass_assign_view_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="account_analytic_mass_assign_values" model="ir.values">
+            <field name="model_id" ref="account.model_account_move_line" />
+            <field name="name">Account Analytic Mass Assign</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('account_analytic_mass_assign_act_window'))"/>
+            <field name="key">action</field>
+            <field name="model">account.move.line</field>
+        </record>
+
+    </data>
+</openerp>
