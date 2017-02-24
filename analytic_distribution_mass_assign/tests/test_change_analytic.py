@@ -71,7 +71,7 @@ class TestChangeAnalytic(TransactionCase):
         self.analytic_plan_line.create({
             'plan_id': plan_id.id,
             'name': '/',
-            'sequence': 001,
+            'sequence': 1,
             'root_analytic_id': self.analytic_root_id.id
         })
 
