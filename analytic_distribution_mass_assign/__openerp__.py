@@ -2,7 +2,7 @@
 # Copyright 2017 OpenSynergy Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
-    "name": "Mass Changing Journal Item Analytic",
+    "name": "Mass Changing Journal Item Analytic Distribution",
     "version": "8.0.1.0.0",
     "category": "Accounting",
     "website": "https://opensynergy-indonesia.com",
