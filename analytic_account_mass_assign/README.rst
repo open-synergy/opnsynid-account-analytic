@@ -13,10 +13,10 @@ Installation
 
 To install this module, you need to:
 
-1.  Clone the branch 8.0 of the repository https://github.com/open-synergy/opnsynid-account-analytic
+1.  Clone the branch 9.0 of the repository https://github.com/open-synergy/opnsynid-account-analytic
 2.  Add the path to this repository in your configuration (addons-path)
 3.  Update the module list
-4.  Go to menu *Setting -> Modules -> Local Modules*
+4.  Go to menu *Apps -> Apps*
 5.  Search For *Mass Changing Journal Item Analytic*
 6.  Install the module
 

@@ -8,7 +8,7 @@
     "website": "https://opensynergy-indonesia.com",
     "author": "OpenSynergy Indonesia",
     "license": "AGPL-3",
-    "installable": False
+    "installable": True,
     "application": False,
     "depends": [
         "account",

@@ -10,49 +10,44 @@ class TestChangeAnalytic(TransactionCase):
     def setUp(self, *args, **kwargs):
         super(TestChangeAnalytic, self).setUp(*args, **kwargs)
         # Objects
-        self.obj_period = self.env['account.period']
         self.obj_move = self.env['account.move']
         self.obj_move_line = self.env['account.move.line']
         self.wiz = self.env['account.analytic_mass_assign']
+        self.obj_journal = self.env['account.journal']
+        self.obj_account = self.env['account.account']
 
         # Data
-        self.journal = self.env.ref('account.sales_journal')
-        self.acc_sale = self.env.ref('account.a_sale')
-        self.acc_recv = self.env.ref('account.a_recv')
-        self.analytic_acc_id = self.env.ref('account.analytic_in_house')
+        self.journal = self.obj_journal.search(
+            [('type', '=', 'sale')]
+        )[0]
+        self.acc_sale = self.obj_account.search(
+            [('internal_type', '=', 'payable')]
+        )[0]
+        self.acc_recv = self.obj_account.search(
+            [('internal_type', '=', 'receivable')]
+        )[0]
+        self.analytic_acc_id =\
+            self.env.ref('analytic.analytic_internal')
 
     def _create_move(self):
-        date = datetime.now()
-        period_id = self.obj_period.find(
-            date,
-            context={'account_period_prefer_normal': True}
-        )
-
         move_vals = {
+            'name': '/',
             'journal_id': self.journal.id,
-            'period_id': period_id.id,
-            'date': date,
+            'line_ids': [(0, 0, {
+                'name': '/',
+                'debit': 875000,
+                'account_id': self.acc_sale.id,
+                'analytic_account_id': False
+            }), (0, 0, {
+                'name': '/',
+                'credit': 875000,
+                'account_id': self.acc_recv.id,
+                'analytic_account_id': False
+            })]
         }
 
         move_id = self.obj_move.create(move_vals)
 
-        self.obj_move_line.create({
-            'move_id': move_id.id,
-            'name': '/',
-            'debit': 0,
-            'credit': 875000,
-            'account_id': self.acc_sale.id,
-            'analytic_account_id': False
-        })
-
-        self.obj_move_line.create({
-            'move_id': move_id.id,
-            'name': '/',
-            'debit': 875000,
-            'credit': 0,
-            'account_id': self.acc_recv.id,
-            'analytic_account_id': False
-        })
         return move_id
 
     def test_change_analytic(self):
@@ -70,7 +65,7 @@ class TestChangeAnalytic(TransactionCase):
             'analytic_account_id': self.analytic_acc_id.id
         }
         wiz = self.wiz.with_context(
-            active_ids=move.line_id.ids
+            active_ids=move.line_ids.ids
         ).create(data_wzd)
         wiz.button_change_analytic()
 
