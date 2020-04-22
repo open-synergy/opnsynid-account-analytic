@@ -22,16 +22,14 @@ class AccountAnalyticAccount(models.Model):
 
     @api.model
     def name_search(self, name="", args=None, operator="ilike", limit=100):
+        res = super(AccountAnalyticAccount, self)\
+            .name_search(name=name, args=args, operator=operator, limit=limit)
         args = list(args or [])
         if name:
-            search_name = name
-            if operator != "=":
-                search_name = "%s%%" % name
             analytic_ids = self.search(
-                [("code", operator, search_name)] + args,
+                ["|", ("code", operator, name), ("name", operator, name)] + args,
                 limit=limit
             )
-            if analytic_ids.ids:
+            if analytic_ids:
                 return analytic_ids.name_get()
-        return super(AccountAnalyticAccount, self)\
-            .name_search(name=name, args=args, operator=operator, limit=limit)
+        return res
