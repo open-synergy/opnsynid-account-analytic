@@ -14,6 +14,7 @@
         "account_accountant",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "reports/account_analytic_line_analysis.xml",
     ],
     "images": [
