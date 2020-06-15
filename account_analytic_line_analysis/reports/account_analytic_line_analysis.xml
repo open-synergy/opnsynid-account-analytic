@@ -11,8 +11,6 @@
             <field name="model">account.analytic_line_analysis</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="name"/>
-                    <field name="ref"/>
                     <field name="account_id"/>
                     <field name="journal_id"/>
                     <field name="user_id"/>
@@ -22,6 +20,8 @@
                     <field name="product_id"/>
                     <field name="general_account_id"/>
                     <field name="move_id"/>
+                    <field name="general_journal_id"/>
+                    <field name="period_id"/>
                     <filter name="dom_empty" string="Empty" domain="[('id','=',0)]"/>
                     <group name="row_grp" string="Row Grouping">
                         <filter name="row_grp_account" string="Analytic Account" context="{'group_by':'account_id'}"/>
@@ -36,6 +36,8 @@
                         <filter name="row_grp_product" string="Product" context="{'group_by':'product_id'}"/>
                         <filter name="row_grp_general_account" string="General Account" context="{'group_by':'general_account_id'}"/>
                         <filter name="row_grp_move" string="Move Line" context="{'group_by':'move_id'}"/>
+                        <filter name="row_grp_general_journal" string="General Journal" context="{'group_by':'general_journal_id'}"/>
+                        <filter name="row_grp_period" string="Period" context="{'group_by':'period_id'}"/>
                     </group>
                     <group name="col_grp" string="Colomn Grouping">
                         <filter name="col_grp_account" string="Analytic Account" context="{'group_by':'account_id'}"/>
@@ -50,6 +52,8 @@
                         <filter name="col_grp_product" string="Product" context="{'group_by':'product_id'}"/>
                         <filter name="col_grp_general_account" string="General Account" context="{'group_by':'general_account_id'}"/>
                         <filter name="col_grp_move" string="Move Line" context="{'group_by':'move_id'}"/>
+                        <filter name="col_grp_general_journal" string="General Journal" context="{'group_by':'general_journal_id'}"/>
+                        <filter name="col_grp_period" string="Period" context="{'group_by':'period_id'}"/>
                     </group>
                 </search>
             </field>

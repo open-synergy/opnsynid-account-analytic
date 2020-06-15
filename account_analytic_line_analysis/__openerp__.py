@@ -16,4 +16,7 @@
     "data": [
         "reports/account_analytic_line_analysis.xml",
     ],
+    "images": [
+        "static/description/banner.png",
+    ],
 }

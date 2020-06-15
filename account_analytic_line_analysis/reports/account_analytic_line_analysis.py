@@ -18,12 +18,6 @@ class AccountAnalyticLineAnalysis(models.Model):
     amount = fields.Float(
         string="Amount",
     )
-    name = fields.Char(
-        string="Description",
-    )
-    ref = fields.Char(
-        string="Ref.",
-    )
     account_id = fields.Many2one(
         string="Analytic Account",
         comodel_name="account.analytic.account",
@@ -59,6 +53,14 @@ class AccountAnalyticLineAnalysis(models.Model):
         string="Move Line",
         comodel_name="account.move.line",
     )
+    general_journal_id = fields.Many2one(
+        string="General Journal",
+        comodel_name="account.journal",
+    )
+    period_id = fields.Many2one(
+        string="Period",
+        comodel_name="account.period",
+    )
 
     def _select(self):
         select_str = """
@@ -66,17 +68,17 @@ class AccountAnalyticLineAnalysis(models.Model):
             a.id AS id,
             a.unit_amount AS unit_amount,
             a.amount AS amount,
-            a.name AS name,
-            a.ref AS ref,
     	    a.account_id AS account_id,
     	    a.journal_id AS journal_id,
     	    a.user_id AS user_id,
     	    a.date AS date,
-    	    b.partner_id AS partner_id,
     	    a.company_id AS company_id,
     	    a.product_id AS product_id,
     	    a.general_account_id AS general_account_id,
-            b.id AS move_id
+            b.id AS move_id,
+    	    b.partner_id AS partner_id,
+            b.journal_id AS general_journal_id,
+            b.period_id AS period_id
         """
         return select_str
 
