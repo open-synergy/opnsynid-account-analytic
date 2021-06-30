@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2020 OpenSynergy Indonesia
      Copyright 2020 PT. Simetri Sinergi Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <openerp>
     <data>
 
@@ -11,49 +10,163 @@
             <field name="model">account.analytic_line_analysis</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="account_id"/>
-                    <field name="journal_id"/>
-                    <field name="user_id"/>
-                    <field name="date"/>
-                    <field name="partner_id"/>
-                    <field name="company_id"/>
-                    <field name="product_id"/>
-                    <field name="general_account_id"/>
-                    <field name="move_id"/>
-                    <field name="general_journal_id"/>
-                    <field name="period_id"/>
-                    <filter name="dom_empty" string="Empty" domain="[('id','=',0)]"/>
+                    <field name="account_id" />
+                    <field name="journal_id" />
+                    <field name="user_id" />
+                    <field name="date" />
+                    <field name="partner_id" />
+                    <field name="company_id" />
+                    <field name="product_id" />
+                    <field name="general_account_id" />
+                    <field name="move_id" />
+                    <field name="general_journal_id" />
+                    <field name="period_id" />
+                    <filter name="dom_empty" string="Empty" domain="[('id','=',0)]" />
                     <group name="row_grp" string="Row Grouping">
-                        <filter name="row_grp_account" string="Analytic Account" context="{'group_by':'account_id'}"/>
-                        <filter name="row_grp_journal" string="Analytic Journal" context="{'group_by':'journal_id'}"/>
-                        <filter name="row_grp_user" string="User" context="{'group_by':'user_id'}"/>
-                        <filter name="row_grp_date_year" string="Date by Year" context="{'group_by':'date:year'}"/>
-                        <filter name="row_grp_date_month" string="Date by Month" context="{'group_by':'date:month'}"/>
-                        <filter name="row_grp_date_week" string="Date by Week" context="{'group_by':'date:week'}"/>
-                        <filter name="row_grp_date_day" string="Date by Day" context="{'group_by':'date:day'}"/>
-                        <filter name="row_grp_partner" string="Account Partner" context="{'group_by':'partner_id'}"/>
-                        <filter name="row_grp_company" string="Company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
-                        <filter name="row_grp_product" string="Product" context="{'group_by':'product_id'}"/>
-                        <filter name="row_grp_general_account" string="General Account" context="{'group_by':'general_account_id'}"/>
-                        <filter name="row_grp_move" string="Move Line" context="{'group_by':'move_id'}"/>
-                        <filter name="row_grp_general_journal" string="General Journal" context="{'group_by':'general_journal_id'}"/>
-                        <filter name="row_grp_period" string="Period" context="{'group_by':'period_id'}"/>
+                        <filter
+                            name="row_grp_account"
+                            string="Analytic Account"
+                            context="{'group_by':'account_id'}"
+                        />
+                        <filter
+                            name="row_grp_journal"
+                            string="Analytic Journal"
+                            context="{'group_by':'journal_id'}"
+                        />
+                        <filter
+                            name="row_grp_user"
+                            string="User"
+                            context="{'group_by':'user_id'}"
+                        />
+                        <filter
+                            name="row_grp_date_year"
+                            string="Date by Year"
+                            context="{'group_by':'date:year'}"
+                        />
+                        <filter
+                            name="row_grp_date_month"
+                            string="Date by Month"
+                            context="{'group_by':'date:month'}"
+                        />
+                        <filter
+                            name="row_grp_date_week"
+                            string="Date by Week"
+                            context="{'group_by':'date:week'}"
+                        />
+                        <filter
+                            name="row_grp_date_day"
+                            string="Date by Day"
+                            context="{'group_by':'date:day'}"
+                        />
+                        <filter
+                            name="row_grp_partner"
+                            string="Account Partner"
+                            context="{'group_by':'partner_id'}"
+                        />
+                        <filter
+                            name="row_grp_company"
+                            string="Company"
+                            context="{'group_by':'company_id'}"
+                            groups="base.group_multi_company"
+                        />
+                        <filter
+                            name="row_grp_product"
+                            string="Product"
+                            context="{'group_by':'product_id'}"
+                        />
+                        <filter
+                            name="row_grp_general_account"
+                            string="General Account"
+                            context="{'group_by':'general_account_id'}"
+                        />
+                        <filter
+                            name="row_grp_move"
+                            string="Move Line"
+                            context="{'group_by':'move_id'}"
+                        />
+                        <filter
+                            name="row_grp_general_journal"
+                            string="General Journal"
+                            context="{'group_by':'general_journal_id'}"
+                        />
+                        <filter
+                            name="row_grp_period"
+                            string="Period"
+                            context="{'group_by':'period_id'}"
+                        />
                     </group>
                     <group name="col_grp" string="Colomn Grouping">
-                        <filter name="col_grp_account" string="Analytic Account" context="{'group_by':'account_id'}"/>
-                        <filter name="col_grp_journal" string="Analytic Journal" context="{'group_by':'journal_id'}"/>
-                        <filter name="col_grp_user" string="User" context="{'group_by':'user_id'}"/>
-                        <filter name="col_grp_date_year" string="Date by Year" context="{'group_by':'date:year'}"/>
-                        <filter name="col_grp_date_month" string="Date by Month" context="{'group_by':'date:month'}"/>
-                        <filter name="col_grp_date_week" string="Date by Week" context="{'group_by':'date:week'}"/>
-                        <filter name="col_grp_date_day" string="Date by Day" context="{'group_by':'date:day'}"/>
-                        <filter name="col_grp_partner" string="Account Partner" context="{'group_by':'partner_id'}"/>
-                        <filter name="col_grp_company" string="Company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
-                        <filter name="col_grp_product" string="Product" context="{'group_by':'product_id'}"/>
-                        <filter name="col_grp_general_account" string="General Account" context="{'group_by':'general_account_id'}"/>
-                        <filter name="col_grp_move" string="Move Line" context="{'group_by':'move_id'}"/>
-                        <filter name="col_grp_general_journal" string="General Journal" context="{'group_by':'general_journal_id'}"/>
-                        <filter name="col_grp_period" string="Period" context="{'group_by':'period_id'}"/>
+                        <filter
+                            name="col_grp_account"
+                            string="Analytic Account"
+                            context="{'group_by':'account_id'}"
+                        />
+                        <filter
+                            name="col_grp_journal"
+                            string="Analytic Journal"
+                            context="{'group_by':'journal_id'}"
+                        />
+                        <filter
+                            name="col_grp_user"
+                            string="User"
+                            context="{'group_by':'user_id'}"
+                        />
+                        <filter
+                            name="col_grp_date_year"
+                            string="Date by Year"
+                            context="{'group_by':'date:year'}"
+                        />
+                        <filter
+                            name="col_grp_date_month"
+                            string="Date by Month"
+                            context="{'group_by':'date:month'}"
+                        />
+                        <filter
+                            name="col_grp_date_week"
+                            string="Date by Week"
+                            context="{'group_by':'date:week'}"
+                        />
+                        <filter
+                            name="col_grp_date_day"
+                            string="Date by Day"
+                            context="{'group_by':'date:day'}"
+                        />
+                        <filter
+                            name="col_grp_partner"
+                            string="Account Partner"
+                            context="{'group_by':'partner_id'}"
+                        />
+                        <filter
+                            name="col_grp_company"
+                            string="Company"
+                            context="{'group_by':'company_id'}"
+                            groups="base.group_multi_company"
+                        />
+                        <filter
+                            name="col_grp_product"
+                            string="Product"
+                            context="{'group_by':'product_id'}"
+                        />
+                        <filter
+                            name="col_grp_general_account"
+                            string="General Account"
+                            context="{'group_by':'general_account_id'}"
+                        />
+                        <filter
+                            name="col_grp_move"
+                            string="Move Line"
+                            context="{'group_by':'move_id'}"
+                        />
+                        <filter
+                            name="col_grp_general_journal"
+                            string="General Journal"
+                            context="{'group_by':'general_journal_id'}"
+                        />
+                        <filter
+                            name="col_grp_period"
+                            string="Period"
+                            context="{'group_by':'period_id'}"
+                        />
                     </group>
                 </search>
             </field>
@@ -64,20 +177,26 @@
             <field name="model">account.analytic_line_analysis</field>
             <field name="arch" type="xml">
                 <graph type="pivot">
-                    <field name="unit_amount" type="measure"/>
-                    <field name="amount" type="measure"/>
+                    <field name="unit_amount" type="measure" />
+                    <field name="amount" type="measure" />
                 </graph>
             </field>
         </record>
 
-        <record id="account_analytic_line_analysis_action" model="ir.actions.act_window">
+        <record
+            id="account_analytic_line_analysis_action"
+            model="ir.actions.act_window"
+        >
             <field name="name">Account Analytic Line Analysis</field>
             <field name="res_model">account.analytic_line_analysis</field>
             <field name="view_type">form</field>
             <field name="view_mode">graph</field>
             <field name="context">{'search_default_dom_empty':1}</field>
-            <field name="view_id" ref="account_analytic_line_analysis_view_graph"/>
-            <field name="search_view_id" ref="account_analytic_line_analysis_view_search"/>
+            <field name="view_id" ref="account_analytic_line_analysis_view_graph" />
+            <field
+                name="search_view_id"
+                ref="account_analytic_line_analysis_view_search"
+            />
         </record>
 
         <menuitem
