@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2020 OpenSynergy Indonesia
 # Copyright 2020 PT. Simetri Sinergi Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models, api
+from openerp import api, fields, models
 
 
 class AccountAnalyticLine(models.Model):
@@ -41,12 +40,14 @@ class AccountAnalyticLine(models.Model):
             if self.date:
                 ctx1.update({"date": self.date})
             amount_unit = pricelist.with_context(ctx1).price_get(
-                prod_id=self.product_id.id,
-                qty=self.unit_amount)[pricelist.id]
-            amount = obj_uom._compute_price(
-                self.product_id.uom_id.id,
-                amount_unit,
-                self.product_uom_id.id) * self.unit_amount
+                prod_id=self.product_id.id, qty=self.unit_amount
+            )[pricelist.id]
+            amount = (
+                obj_uom._compute_price(
+                    self.product_id.uom_id.id, amount_unit, self.product_uom_id.id
+                )
+                * self.unit_amount
+            )
             prec = obj_precision.precision_get("Account")
             result = round(amount, prec)
             if not is_sale_line:

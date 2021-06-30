@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2020 OpenSynergy Indonesia
      Copyright 2020 PT. Simetri Sinergi Indonesia
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
@@ -7,7 +7,7 @@
 <record id="account_analytic_account_view_form" model="ir.ui.view">
     <field name="name">account.analytic.account form</field>
     <field name="model">account.analytic.account</field>
-    <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+    <field name="inherit_id" ref="analytic.view_account_analytic_account_form" />
     <field name="arch" type="xml">
         <data>
             <xpath expr="//notebook" position="inside">
@@ -15,9 +15,9 @@
                     <group name="account_subs_1" colspan="4" col="2">
                         <field name="general_account_substitution_ids" nolabel="1">
                             <tree editable="top">
-                                <field name="product_id"/>
-                                <field name="income_general_account_id"/>
-                                <field name="expense_general_account_id"/>
+                                <field name="product_id" />
+                                <field name="income_general_account_id" />
+                                <field name="expense_general_account_id" />
                             </tree>
                         </field>
                     </group>
