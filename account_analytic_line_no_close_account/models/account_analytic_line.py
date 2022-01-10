@@ -13,11 +13,43 @@ class AccountAnalyticLine(models.Model):
     def create(self, vals):
         _super = super(AccountAnalyticLine, self)
         result = _super.create(vals)
-
-        if vals.get("account_id"):
-            obj_analytic_account = self.env["account.analytic.account"]
-            analytic_account = obj_analytic_account.browse(vals["account_id"])
-            if analytic_account.state == "close":
-                msg_error = _("Analytic account is closed")
-                raise UserError(msg_error)
+        if self._check_account(vals.get("account_id")):
+            msg_error = _("Analytic account is closed")
+            raise UserError(msg_error)
         return result
+
+    @api.multi
+    def _check_account(self, account_id):
+        res = False
+        obj_analytic_account = self.env["account.analytic.account"]
+        analytic_account = obj_analytic_account.browse(account_id)
+        if analytic_account.state == "close":
+            res = True
+        return res
+
+    @api.multi
+    def write(self, vals):
+        _super = super(AccountAnalyticLine, self)
+        for record in self:
+            # check old analytic account
+            if record.account_id:
+                if record.account_id.state == "close":
+                    msg_error = _("Cannot Edit -> Analytic Account %s is closed") % (
+                        record.account_id.name
+                    )
+                    raise UserError(msg_error)
+            # check new analytic account
+            if record._check_account(vals.get("account_id")):
+                msg_error = _("Cannot Edit -> Analytic Account is closed")
+                raise UserError(msg_error)
+        return _super.write(vals)
+
+    @api.multi
+    def unlink(self):
+        for record in self:
+            if record.account_id:
+                if record.account_id.state == "close":
+                    msg_error = _("Cannot Delete --> Analytic account is closed")
+                    raise UserError(msg_error)
+        _super = super(AccountAnalyticLine, self)
+        _super.unlink()
