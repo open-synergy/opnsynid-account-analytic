@@ -18,7 +18,7 @@ class AccountAnalyticLine(models.Model):
             raise UserError(msg_error)
         return result
 
-    @api.multi
+    @api.model
     def _check_account(self, account_id):
         res = False
         obj_analytic_account = self.env["account.analytic.account"]
